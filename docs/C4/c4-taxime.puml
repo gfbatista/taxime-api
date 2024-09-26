@@ -1,0 +1,41 @@
+@startuml Diagrama de Container
+
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title "TaxiMe System"
+
+AddRelTag("async", $lineStyle = DashedLine())
+AddContainerTag(main_component, $fontColor="#0A0A0A", $borderColor="#438DD5", $legendText="endereçamento", $bgColor="#8698C0")
+AddContainerTag(main, $fontColor="#0A0A0A", $borderColor="#438DD5", $legendText="recursos compartilhados", $bgColor="#406DD8")
+AddContainerTag(cache_component, $fontColor="#0A0E01", $borderColor="#438545", $legendText="recursos compartilhados", $bgColor="#406DD8")
+AddExternalSystemTag(external, $fontColor="#FFFFFF")
+
+SHOW_PERSON_OUTLINE()
+
+Person(user, "Usuário", "Cliente deseja uma corrida")
+Person(drive, "Motorista", "Motorista deseja realizar uma corrida")
+
+AddRelTag("async", $lineStyle = DashedLine())
+
+Container(api, "TaxiMe-api", "API principal")
+Container(worker, "TaxiPay-worker", "Worker responsável em processar os pagamentos")
+ContainerDb(mongo, "MongoDb", "Responsável por persistir a geolocalização do motorista") 
+ContainerDb(postgres, "PostgreSQL", "Responsável por persistir os dados da API") 
+ContainerQueue(queue, "payment-order-created-queue", "RabbitMQ")
+
+
+Rel_D(user, api, "Usuário solicita uma corrida", "[json/https]")
+Rel_D(drive, api, "Motorista efetiva uma corrida", "[json/https]")
+Rel_D(api, queue, "Envia a solicitação de pagamento", "AMPQ", $tags = "async")
+Rel_D(worker, queue, "Consome a solicitação de pagamento", "AMPQ", $tags = "async")
+Rel_D(worker, api, "Envia o pagamento processado", "[json/https]", $tags = "async")
+Rel_D(api, mongo, "Persiste", "[SQL]")
+Rel_D(api, postgres, "Persiste", "[SQL]")
+
+System_Boundary(geolocalizacao, "Geolocalização") {
+ System_Ext(worker2, "Taxi-worker", "Worker responsável em enviar a geolocalização do motorista")
+}
+
+Rel_L(geolocalizacao, mongo, "Persiste", "[SQL]")
+
+@enduml
