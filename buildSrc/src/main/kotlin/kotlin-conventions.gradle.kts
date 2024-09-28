@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     kotlin("jvm")
-    id("jacoco")
+    id("jacoco-report-aggregation")
 }
 
 repositories {
@@ -23,43 +23,28 @@ kotlin {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.12"
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-val coverageExclusions =
-    listOf(
-        "**/*ApplicationKt**",
-    )
+tasks.testCodeCoverageReport {
+    reports {
+        xml.required.set(true)
+        xml.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacoco.xml")))
 
-tasks.withType<JacocoReport> {
-    afterEvaluate {
-        classDirectories.setFrom(
-            files(
-                classDirectories.files.map {
-                    fileTree(it).apply {
-                        exclude(coverageExclusions)
-                    }
-                },
-            ),
-        )
+        html.required.set(true)
+        html.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacocoHtml")))
+
+        csv.required.set(true)
+        csv.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacoco.csv")))
     }
 }
 
-tasks.withType<JacocoReport> {
-    dependsOn(tasks.withType(Test::class.java))
-
-    reports {
-        csv.required = true
-        html.required = true
-        xml.required = true
-
-        csv.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacoco.csv")))
-        html.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacocoHtml")))
-        xml.outputLocation.set(file(layout.buildDirectory.dir("jacoco/jacoco.xml")))
-    }
+tasks.named("jacocoTestReport") {
+    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
 }

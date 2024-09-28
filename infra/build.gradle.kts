@@ -12,18 +12,6 @@ repositories {
     mavenCentral()
 }
 
-tasks.bootJar {
-    enabled = true
-
-    mainClass.set("com.luizalabs.taximeapi.TaximeApiApplication")
-    archiveBaseName.set("application")
-    destinationDirectory.set(file("${layout.buildDirectory.get()}/libs"))
-}
-
-tasks.jar {
-    enabled = false
-}
-
 dependencies {
     implementation(project(":domain"))
     implementation(project(":application"))
@@ -34,6 +22,4 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
