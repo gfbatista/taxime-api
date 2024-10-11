@@ -1,0 +1,26 @@
+    {
+        "id": 1,
+        "uuid": "77c7fdbb-1a41-474f-986d-d39fc47d9715",
+        "name": "Gilberto Ferrari",
+        "email": "gilberto@email.com",
+        "password": "99A29DC8105FD2FA39D8CDC04733938D",
+        "createdAt": "2023-12-12 13:44:51",
+        "updatedAt": "2023-12-12 13:44:51",
+        "deletedAt": null,
+        "address": {
+            "id": 1,
+            "uuid": "72680edf-9115-4fc8-aded-340475cc2f4c",
+            "userId": 1,
+            "street": "Rua da Esperança",
+            "city": "Franca",
+            "district": "Parque Castelo",
+            "state": "SP",
+            "number": 601,
+            "zipcode": "14403-000",
+            "complement": "Apartamento 101",
+            "reference": "Ao lado do poli esportivo",
+            "createdAt": "2024-01-09T19:06:51.434Z",
+            "updatedAt": "2024-01-09T19:06:51.434Z",
+            "deletedAt": null
+        }
+    }

@@ -1,0 +1,5 @@
+@startuml Fluxo de alteração do usuário
+database "taxime-db"
+"taxime-api" -> "taxime-db" : PATCH /v1/users/:uuid
+"taxime-db"  -> "taxime-api" : Altera o usuário [204]
+@enduml

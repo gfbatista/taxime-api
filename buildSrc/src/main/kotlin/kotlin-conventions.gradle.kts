@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 plugins {
     kotlin("jvm")
     id("jacoco-report-aggregation")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 repositories {
@@ -47,4 +48,14 @@ tasks.testCodeCoverageReport {
 
 tasks.named("jacocoTestReport") {
     dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    additionalEditorconfig.set(
+        mapOf(
+            "indent_size" to "4",
+            "insert_final_newline" to "true",
+            "max_line_length" to "off",
+        ),
+    )
 }

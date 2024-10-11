@@ -1,0 +1,5 @@
+@startuml Fluxo de criação de usuário
+database "taxime-db"
+"taxime-api" -> "taxime-db" : POST /v1/users
+"taxime-db"  -> "taxime-api" : Salva o usuário [201]
+@enduml

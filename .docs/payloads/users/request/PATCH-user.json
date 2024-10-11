@@ -1,0 +1,15 @@
+{
+    "name": "Gilberto Ferrari",
+    "email": "gilberto@email.com",
+    "password": "99A29DC8105FD2FA39D8CDC04733938D",
+    "address": {
+        "street": "Rua da Esperança",
+        "city": "Franca",
+        "district": "Parque Castelo",
+        "state": "SP",
+        "number": 601,
+        "complement": "Apartamento 101",
+        "reference": "Ao lado do poli esportivo",
+        "zipcode": "14403-000"
+    }
+}

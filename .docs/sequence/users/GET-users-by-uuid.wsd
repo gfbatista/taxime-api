@@ -1,0 +1,5 @@
+@startuml Fluxo de busca de usuário por uuid
+database "taxime-db"
+"taxime-api" -> "taxime-db" : GET /v1/users/:uuid
+"taxime-db"  -> "taxime-api" : Retorna o usuário [200]
+@enduml

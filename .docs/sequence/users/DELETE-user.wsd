@@ -1,0 +1,5 @@
+@startuml Fluxo de deleção de usuário
+database "taxime-db"
+"taxime-api" -> "taxime-db" : DELETE /v1/users/:uuid
+"taxime-db"  -> "taxime-api" : Deleta o usuário [204]
+@enduml
