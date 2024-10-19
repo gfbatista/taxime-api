@@ -1,13 +1,14 @@
 package com.br.taximeapi.application.user.usecase
 
 import com.br.com.br.taximeapi.application.usecase.UseCase
+import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Input
+import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Output
 import com.br.taximeapi.domain.user.User
 import com.br.taximeapi.domain.user.repositories.CreateUserRepository
-import java.util.UUID
 
 class CreateUserUseCase(
     private val createUserRepository: CreateUserRepository,
-) : UseCase<CreateUserUseCase.Input, CreateUserUseCase.Output>() {
+) : UseCase<Input, Output>() {
     override fun execute(input: Input): Output {
         val (name, email, password) = input
 
@@ -21,17 +22,4 @@ class CreateUserUseCase(
             password = savedUser.password(),
         )
     }
-
-    data class Input(
-        val name: String,
-        val email: String,
-        val password: String,
-    )
-
-    data class Output(
-        val uuid: UUID,
-        val name: String,
-        val email: String,
-        val password: String,
-    )
 }
