@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: "taxime-api"
+  datasource:
+    primary:
+      url: "${PG_DATASOURCE_URL:jdbc:postgresql://localhost:5432/taxime-db}"
+      username: "${PG_USERNAME:root}"
+      password: "${PG_PASSWORD:root}"
+      hikari:
+        schema: "${PG_SCHEMA:public}"
+        minimumIdle: "${HIKARI_PRIMARY_MINIMUM_IDLE:5}"
+        maximumPoolSize: "${HIKARI_PRIMARY_MAXIMUM_POLL_SIZE:25}"
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        show_sql: "${SHOW_SQL:true}"
+        type: all
+        connection:
+          handling_mode: DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  flyway:
+    schemas: "${PG_SCHEMA:public}"
+    check-location: false
+    enabled: "${MIGRATION_ENABLED:true}"
+    url: "${PG_DATASOURCE_URL:jdbc:postgresql://localhost:5432/taxime-db}"
+    user: "${PG_USERNAME:root}"
+    password: "${PG_PASSWORD:root}"
+    out-of-order: true

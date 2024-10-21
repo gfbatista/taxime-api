@@ -1,6 +1,6 @@
 package com.br.taximeapi.application.user.usecase
 
-import com.br.com.br.taximeapi.application.usecase.UseCase
+import com.br.taximeapi.application.usecase.UseCase
 import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Input
 import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Output
 import com.br.taximeapi.domain.user.User

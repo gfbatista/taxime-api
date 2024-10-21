@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 data class User(
+    private val id: Int? = null,
     private var uuid: UUID? = null,
     private val name: String,
     private val email: String,
@@ -14,6 +15,8 @@ data class User(
     private val updatedAt: LocalDateTime?,
     private val deletedAt: LocalDateTime?,
 ) {
+    fun id(): Int? = id
+
     fun uuid(): UUID? = uuid
 
     fun name() = name
