@@ -6,7 +6,11 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
 }
 
-group = "com.br.taximeapi"
+group = "com.br.taximeapi.infra"
+
+version = "0.0.1"
+description =
+    "Api responsável por gerenciar corridas entre usuários e os motoristas"
 
 repositories {
     mavenCentral()
@@ -21,6 +25,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("com.h2database:h2")

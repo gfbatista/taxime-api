@@ -1,6 +1,9 @@
+application:
+  name: "taxime-api"
+  description: "Api responsável por gerenciar corridas entre usuários e os motoristas"
+  version: "0.0.1"
+
 spring:
-  application:
-    name: "taxime-api"
   datasource:
     primary:
       url: "${PG_DATASOURCE_URL:jdbc:postgresql://localhost:5432/taxime-db}"
@@ -30,3 +33,10 @@ spring:
     user: "${PG_USERNAME:root}"
     password: "${PG_PASSWORD:root}"
     out-of-order: true
+
+springdoc:
+  swagger-ui:
+    enabled: "${SWAGGER_ENABLED:true}"
+    path: /docs
+  api-docs:
+    enabled: "${SWAGGER_ENABLED:true}"
