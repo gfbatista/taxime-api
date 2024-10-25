@@ -2,6 +2,7 @@ package com.br.taximeapi.application.user.usercase
 
 import com.br.taximeapi.application.user.repository.InMemoryUserRepository
 import com.br.taximeapi.application.user.usecase.CreateUserUseCase
+import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Input
 import com.br.taximeapi.domain.shared.hash
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -16,7 +17,7 @@ class CreateUserUseCaseTest {
         val expectedPassword = "User Password"
         val expectedEmail = "contact@example.com"
         val input =
-            CreateUserUseCase.Input(
+            Input(
                 name = expectedName,
                 password = expectedPassword,
                 email = expectedEmail,

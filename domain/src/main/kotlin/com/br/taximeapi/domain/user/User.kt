@@ -6,7 +6,6 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 data class User(
-    private val id: Int? = null,
     private var uuid: UUID? = null,
     private val name: String,
     private val email: String,
@@ -15,8 +14,6 @@ data class User(
     private val updatedAt: LocalDateTime?,
     private val deletedAt: LocalDateTime?,
 ) {
-    fun id(): Int? = id
-
     fun uuid(): UUID? = uuid
 
     fun name() = name
@@ -38,7 +35,7 @@ data class User(
 
         if (name().length <= 3) throw InvalidStringValueException("User name must be bigger or equal to 3.")
 
-        if (password().length <= 8) throw InvalidStringValueException("User password info must be bigger or equal to 8.")
+        if (password().length < 8) throw InvalidStringValueException("User password info must be bigger or equal to 8.")
         this.password = password().hash()
 
         val emailRegex = "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?\$".toRegex()

@@ -49,7 +49,6 @@ data class UserEntity(
 
 fun User.toEntity() =
     UserEntity(
-        id = id(),
         uuid = uuid(),
         name = name(),
         email = email(),
