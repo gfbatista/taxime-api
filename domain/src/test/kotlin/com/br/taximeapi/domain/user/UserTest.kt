@@ -1,6 +1,6 @@
 package com.br.taximeapi.domain.user
 
-import com.br.taximeapi.domain.exceptions.InvalidStringValueException
+import com.br.taximeapi.domain.shared.exceptions.InvalidStringValueException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

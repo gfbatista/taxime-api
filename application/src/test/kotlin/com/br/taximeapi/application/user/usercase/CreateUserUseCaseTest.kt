@@ -5,12 +5,19 @@ import com.br.taximeapi.application.user.usecase.CreateUserUseCase
 import com.br.taximeapi.application.user.usecase.dto.CreateUserUseCaseDto.Input
 import com.br.taximeapi.domain.shared.hash
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class CreateUserUseCaseTest {
+    private lateinit var repository: InMemoryUserRepository
+
+    @BeforeEach
+    fun setUp() {
+        repository = InMemoryUserRepository()
+    }
+
     @Test
     fun `It should create a user successfully`() {
-        val repository = InMemoryUserRepository()
         val sut = CreateUserUseCase(createUserRepository = repository)
 
         val expectedName = "User Name"

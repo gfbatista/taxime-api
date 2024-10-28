@@ -1,5 +1,6 @@
 plugins {
     kotlin("plugin.spring") version "1.9.25"
+    kotlin("plugin.jpa") version "1.9.23"
 
     id("kotlin-conventions")
     id("org.springframework.boot") version "3.3.4"

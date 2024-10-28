@@ -1,6 +1,6 @@
 package com.br.taximeapi.domain.user
 
-import com.br.taximeapi.domain.exceptions.InvalidStringValueException
+import com.br.taximeapi.domain.shared.exceptions.InvalidStringValueException
 import com.br.taximeapi.domain.shared.hash
 import java.time.LocalDateTime
 import java.util.UUID
