@@ -2,7 +2,8 @@ package com.br.taximeapi.infra.entrypoint.http.v1.user
 
 import com.br.taximeapi.application.user.usecase.CreateUserUseCase
 import com.br.taximeapi.application.user.usecase.FindUserByUuidUseCase
-import com.br.taximeapi.application.user.usecase.dto.FindUserByUuidUseCaseDto
+import com.br.taximeapi.application.user.usecase.dto.FindUserByUuidUseCaseDto.Input
+import com.br.taximeapi.application.user.usecase.dto.FindUserByUuidUseCaseDto.Output
 import com.br.taximeapi.infra.entrypoint.http.v1.user.UserController.Companion.ENDPOINT_PATH
 import com.br.taximeapi.infra.entrypoint.http.v1.user.dto.request.CreateUserRequest
 import io.swagger.v3.oas.annotations.Operation
@@ -47,7 +48,7 @@ class UserController(
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get Carrier by UUID", description = "Retrieve a user by UUID.")
+    @Operation(summary = "Get User by UUID", description = "Retrieve a user by UUID.")
     @ApiResponses(
         value = [
             ApiResponse(
@@ -60,8 +61,8 @@ class UserController(
     fun findUserByUuid(
         @PathVariable("id")
         uuid: UUID,
-    ): ResponseEntity<FindUserByUuidUseCaseDto.Output> {
-        val user = this.findUserByUuidUseCase.execute(FindUserByUuidUseCaseDto.Input(uuid))
+    ): ResponseEntity<Output> {
+        val user = this.findUserByUuidUseCase.execute(Input(uuid))
 
         return ResponseEntity.ok(user)
     }

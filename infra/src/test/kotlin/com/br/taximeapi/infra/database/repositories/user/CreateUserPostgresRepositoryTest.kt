@@ -24,7 +24,7 @@ class CreateUserPostgresRepositoryTest : UnitTest {
     }
 
     @Test
-    fun `it should `() {
+    fun `It should create a user and return the created user`() {
         val expectedName = "User Name"
         val expectedPassword = "password"
         val expectedEmail = "contact@example.com"

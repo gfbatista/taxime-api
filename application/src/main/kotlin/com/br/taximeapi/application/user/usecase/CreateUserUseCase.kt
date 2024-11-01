@@ -12,8 +12,8 @@ class CreateUserUseCase(
     override fun execute(input: Input): Output {
         val (name, email, password) = input
 
-        val carrier = User.new(name, email, password)
-        val savedUser = this.createUserRepository.create(carrier)
+        val user = User.new(name, email, password)
+        val savedUser = this.createUserRepository.create(user)
 
         return Output(
             uuid = savedUser.uuid()!!,
